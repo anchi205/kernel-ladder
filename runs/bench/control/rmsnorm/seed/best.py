@@ -1,0 +1,39 @@
+import torch
+import triton
+import triton.language as tl
+
+
+@triton.jit
+def _rmsnorm_kernel(x_ptr, w_ptr, out_ptr, N, eps, BLOCK: tl.constexpr):
+    row = tl.program_id(0)
+    x_row = x_ptr + row.to(tl.int64) * N
+    o_row = out_ptr + row.to(tl.int64) * N
+
+    acc = tl.zeros([BLOCK], dtype=tl.float32)
+    for start in range(0, N, BLOCK):
+        offs = start + tl.arange(0, BLOCK)
+        mask = offs < N
+        x = tl.load(x_row + offs, mask=mask, other=0.0).to(tl.float32)
+        acc += x * x
+    mean = tl.sum(acc, axis=0) / N
+    rstd = 1.0 / tl.sqrt(mean + eps)
+
+    for start in range(0, N, BLOCK):
+        offs = start + tl.arange(0, BLOCK)
+        mask = offs < N
+        x = tl.load(x_row + offs, mask=mask, other=0.0).to(tl.float32)
+        w = tl.load(w_ptr + offs, mask=mask, other=0.0).to(tl.float32)
+        y = x * rstd * w
+        tl.store(o_row + offs, y.to(out_ptr.dtype.element_ty), mask=mask)
+
+
+def forward(x, w, eps: float = 1e-6):
+    orig_shape = x.shape
+    N = orig_shape[-1]
+    x2 = x.contiguous().view(-1, N)
+    w = w.contiguous()
+    out = torch.empty_like(x2)
+    rows = x2.shape[0]
+    BLOCK = min(1024, triton.next_power_of_2(N))
+    _rmsnorm_kernel[(rows,)](x2, w, out, N, eps, BLOCK=BLOCK)
+    return out.view(orig_shape)

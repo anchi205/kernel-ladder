@@ -1,0 +1,12 @@
+rmsnorm: runs_final/rmsnorm/graph/final.py
+[float32]  contender                          ms   candidate speedup vs it
+      reference                       3.805       3.41x
+      candidate                       1.116   
+      torch.compile(reference)        1.109       0.99x
+      F.rms_norm                      1.344       1.20x
+
+[float16]  contender                          ms   candidate speedup vs it
+      reference                       5.375       9.54x
+      candidate                       0.563   
+      torch.compile(reference)        0.560       0.99x
+      F.rms_norm                      0.565       1.00x

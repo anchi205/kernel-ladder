@@ -1,0 +1,36 @@
+graph for 'softmax':
+seed -> fuse, reduce, vectorize   (run in parallel)
+fuse + reduce + vectorize -> launch   (conflict: launch starts from the result of fuse and reduce and vectorize)
+all strategies -> combine -> merge (plain code, picks the best verified result)
+
+[   0.0s] seed: start 
+[  18.4s] seed: done 
+[  18.4s] fuse: start 
+[  18.4s] reduce: start 
+[  18.4s] vectorize: start 
+[  73.4s] reduce: done 
+[  82.2s] fuse: done 
+[  89.8s] vectorize: done 
+[  89.8s] launch: start 
+[ 133.8s] launch: done 
+[ 133.8s] combine: start 
+[ 133.8s] combine: done 
+[ 133.8s] merge: start 
+[ 140.5s] merge: done 
+[ 140.5s] gate: start 
+[ 140.5s] gate: done 
+
+wall time 140s; GPU time on the box 48s of 480s budget
+node        speedup  gained  attempts  outcome
+seed          0.96x  True          1  green
+fuse          0.96x  False         2  budget
+reduce        0.98x  True          2  green
+vectorize     0.96x  False         2  budget
+launch        0.98x  False         2  budget
+combine       0.96x  False         0  skipped (fewer than 2 independent gains to combine)
+
+WINNER reduce: 0.98x when produced, 0.98x re-measured -> runs_final/softmax/graph/final.py
+
+GATE  SHIP   tier: one-click undo
+  - plain math in its own scope; revert is deleting the file
+  evidence rule: ships on green

@@ -1,0 +1,58 @@
+[
+ {
+  "kind": "strategy",
+  "arch": "sm_121",
+  "family": "memory-bound",
+  "key": "fuse",
+  "contribs": [
+   {
+    "run": "bench-rmsnorm",
+    "op": "rmsnorm",
+    "gained": true,
+    "gain_x": 1.071
+   }
+  ]
+ },
+ {
+  "kind": "strategy",
+  "arch": "sm_121",
+  "family": "memory-bound",
+  "key": "reduce",
+  "contribs": [
+   {
+    "run": "bench-rmsnorm",
+    "op": "rmsnorm",
+    "gained": true,
+    "gain_x": 1.045
+   }
+  ]
+ },
+ {
+  "kind": "strategy",
+  "arch": "sm_121",
+  "family": "memory-bound",
+  "key": "vectorize",
+  "contribs": [
+   {
+    "run": "bench-rmsnorm",
+    "op": "rmsnorm",
+    "gained": true,
+    "gain_x": 1.05
+   }
+  ]
+ },
+ {
+  "kind": "strategy",
+  "arch": "sm_121",
+  "family": "memory-bound",
+  "key": "launch",
+  "contribs": [
+   {
+    "run": "bench-rmsnorm",
+    "op": "rmsnorm",
+    "gained": false,
+    "gain_x": 1.0
+   }
+  ]
+ }
+]

@@ -1,0 +1,35 @@
+[
+ {
+  "op": "rmsnorm",
+  "arm": "train",
+  "speedup": 3.47,
+  "confirmed": 3.47,
+  "model_attempts": 8,
+  "skipped": 0,
+  "wall_s": 168.0,
+  "gpu_s": 41.7,
+  "gate": "ship"
+ },
+ {
+  "op": "kv_quant",
+  "arm": "control",
+  "speedup": 8.3,
+  "confirmed": 8.21,
+  "model_attempts": 9,
+  "skipped": 0,
+  "wall_s": 145.8,
+  "gpu_s": 44.3,
+  "gate": "hold"
+ },
+ {
+  "op": "kv_quant",
+  "arm": "treatment",
+  "speedup": 8.22,
+  "confirmed": 8.28,
+  "model_attempts": 8,
+  "skipped": 0,
+  "wall_s": 125.2,
+  "gpu_s": 41.3,
+  "gate": "ship"
+ }
+]

@@ -1,0 +1,37 @@
+graph for 'kv_quant':
+seed -> fuse, reduce, vectorize   (run in parallel)
+fuse + reduce + vectorize -> launch   (conflict: launch starts from the result of fuse and reduce and vectorize)
+all strategies -> combine -> merge (plain code, picks the best verified result)
+
+[   0.0s] seed: start 
+[  25.7s] seed: done 
+[  25.7s] fuse: start 
+[  25.7s] reduce: start 
+[  25.7s] vectorize: start 
+[  70.2s] fuse: done 
+[  84.4s] vectorize: done 
+[  92.4s] reduce: done 
+[  92.4s] launch: start 
+[ 140.9s] launch: done 
+[ 140.9s] combine: start 
+[ 140.9s] combine: done 
+[ 140.9s] merge: start 
+[ 147.8s] merge: done 
+[ 147.8s] gate: start 
+[ 169.1s] gate: done 
+
+wall time 169s; GPU time on the box 61s of 480s budget
+node        speedup  gained  attempts  outcome
+seed          8.41x  True          1  green
+fuse          8.41x  False         2  budget
+reduce        8.41x  False         2  budget
+vectorize     8.41x  False         2  budget
+launch        8.41x  False         2  budget
+combine       8.41x  False         0  skipped (fewer than 2 independent gains to combine)
+
+WINNER seed: 8.41x when produced, 8.37x re-measured -> runs_final/kv_quant/graph/final.py
+
+GATE  SHIP   tier: cleanup undo
+  - approximate math
+  evidence wide sweep: green
+  evidence second opinion: APPROVE: VERDICT: APPROVE - Matches the reference: float32 absmax, clamp to 1e-8, divide by 127, divide, round-half-even (`rint` matches `torch.round`), clamp to ±127, cast to int8. - The "approximate math" flag is a false alarm. `div_rn` is IEEE round-to-nearest division, not a fast approximation, so the sc

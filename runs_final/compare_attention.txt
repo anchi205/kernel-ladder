@@ -1,0 +1,12 @@
+attention: runs_final/attention/graph/final.py
+[float32]  contender                          ms   candidate speedup vs it
+      reference                      13.315       7.29x
+      candidate                       1.826   
+      torch.compile(reference)        6.356       3.48x
+      torch SDPA (fused)              0.741       0.41x
+
+[float16]  contender                          ms   candidate speedup vs it
+      reference                      10.358      54.14x
+      candidate                       0.191   
+      torch.compile(reference)        2.588      13.53x
+      torch SDPA (fused)              0.174       0.91x

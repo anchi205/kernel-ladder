@@ -1,0 +1,10 @@
+kv_quant: runs_final/kv_quant/graph/final.py
+[float32]  contender                          ms   candidate speedup vs it
+      reference                      11.170       8.39x
+      candidate                       1.331   
+      torch.compile(reference)        1.331       1.00x
+
+[float16]  contender                          ms   candidate speedup vs it
+      reference                      12.783      15.52x
+      candidate                       0.824   
+      torch.compile(reference)        0.832       1.01x

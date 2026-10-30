@@ -1,0 +1,36 @@
+graph for 'rmsnorm':
+seed -> fuse, reduce, vectorize   (run in parallel)
+fuse + reduce + vectorize -> launch   (conflict: launch starts from the result of fuse and reduce and vectorize)
+all strategies -> combine -> merge (plain code, picks the best verified result)
+
+[   0.0s] seed: start 
+[  18.8s] seed: done 
+[  18.8s] fuse: start 
+[  18.8s] reduce: start 
+[  18.8s] vectorize: start 
+[  67.4s] fuse: done 
+[  74.3s] reduce: done 
+[  84.8s] vectorize: done 
+[  84.8s] launch: start 
+[ 150.6s] launch: done 
+[ 150.6s] combine: start 
+[ 150.6s] combine: done 
+[ 150.6s] merge: start 
+[ 158.1s] merge: done 
+[ 158.1s] gate: start 
+[ 158.2s] gate: done 
+
+wall time 158s; GPU time on the box 64s of 480s budget
+node        speedup  gained  attempts  outcome
+seed          3.46x  True          1  green
+fuse          3.46x  False         2  budget
+reduce        3.46x  False         2  budget
+vectorize     3.46x  False         2  budget
+launch        3.46x  False         2  budget
+combine       3.46x  False         0  skipped (fewer than 2 independent gains to combine)
+
+WINNER seed: 3.46x when produced, 3.48x re-measured -> runs_final/rmsnorm/graph/final.py
+
+GATE  SHIP   tier: one-click undo
+  - plain math in its own scope; revert is deleting the file
+  evidence rule: ships on green

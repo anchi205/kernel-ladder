@@ -1,0 +1,36 @@
+graph for 'attention':
+seed -> fuse, reduce, tile   (run in parallel)
+fuse + reduce + tile -> launch   (conflict: launch starts from the result of fuse and reduce and tile)
+all strategies -> combine -> merge (plain code, picks the best verified result)
+
+[   0.0s] seed: start 
+[  55.3s] seed: done 
+[  55.3s] fuse: start 
+[  55.3s] reduce: start 
+[  55.3s] tile: start 
+[ 129.8s] fuse: done 
+[ 146.2s] tile: done 
+[ 162.0s] reduce: done 
+[ 162.0s] launch: start 
+[ 223.9s] launch: done 
+[ 223.9s] combine: start 
+[ 223.9s] combine: done 
+[ 223.9s] merge: start 
+[ 233.1s] merge: done 
+[ 233.1s] gate: start 
+[ 233.1s] gate: done 
+
+wall time 233s; GPU time on the box 97s of 480s budget
+node        speedup  gained  attempts  outcome
+seed          6.53x  True          2  green
+fuse          7.14x  True          2  green
+reduce        6.53x  False         2  budget
+tile          6.53x  False         2  budget
+launch        7.14x  False         2  budget
+combine       6.53x  False         0  skipped (fewer than 2 independent gains to combine)
+
+WINNER fuse: 7.14x when produced, 7.23x re-measured -> runs_final/attention/graph/final.py
+
+GATE  SHIP   tier: one-click undo
+  - plain math in its own scope; revert is deleting the file
+  evidence rule: ships on green

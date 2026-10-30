@@ -1,0 +1,98 @@
+[
+ {
+  "t": 0.0001837499439716339,
+  "node": "seed",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 18.369899958954193,
+  "node": "seed",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 18.37028549995739,
+  "node": "fuse",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 18.371000374900177,
+  "node": "reduce",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 18.372178624966182,
+  "node": "vectorize",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 73.36400554189458,
+  "node": "reduce",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 82.19027741695754,
+  "node": "fuse",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 89.84560841694474,
+  "node": "vectorize",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 89.84582004195545,
+  "node": "launch",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 133.77261841692962,
+  "node": "launch",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 133.77320599998347,
+  "node": "combine",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 133.773512499989,
+  "node": "combine",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 133.77360208390746,
+  "node": "merge",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 140.46924662496895,
+  "node": "merge",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 140.46938454196788,
+  "node": "gate",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 140.47409679193515,
+  "node": "gate",
+  "kind": "done",
+  "detail": ""
+ }
+]

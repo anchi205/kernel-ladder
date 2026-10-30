@@ -1,0 +1,10 @@
+softmax: runs_final/softmax/graph/final.py
+[float32]  contender                          ms   candidate speedup vs it
+      reference                       1.084       0.98x
+      candidate                       1.111   
+      torch.compile(reference)        1.124       1.01x
+
+[float16]  contender                          ms   candidate speedup vs it
+      reference                       0.576       1.03x
+      candidate                       0.562   
+      torch.compile(reference)        0.561       1.00x

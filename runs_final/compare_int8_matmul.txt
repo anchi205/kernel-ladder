@@ -1,0 +1,12 @@
+int8_matmul: runs_final/int8_matmul/graph/final.py
+[float32]  contender                          ms   candidate speedup vs it
+      reference                       3.141       7.56x
+      candidate                       0.416   
+      torch.compile(reference)        2.551       6.14x
+      torch._int_mm                   2.415       5.81x
+
+[float16]  contender                          ms   candidate speedup vs it
+      reference                       3.591      14.10x
+      candidate                       0.255   
+      torch.compile(reference)        2.405       9.44x
+      torch._int_mm                   2.914      11.44x

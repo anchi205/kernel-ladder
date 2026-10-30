@@ -1,0 +1,34 @@
+graph for 'int8_matmul':
+seed -> vectorize   (run in parallel)
+vectorize -> tile   (conflict: tile starts from the result of vectorize)
+tile -> launch   (conflict: launch starts from the result of tile)
+all strategies -> combine -> merge (plain code, picks the best verified result)
+
+[   0.0s] seed: start 
+[  27.2s] seed: done 
+[  27.2s] vectorize: start 
+[ 161.3s] vectorize: done 
+[ 161.3s] tile: start 
+[ 371.2s] tile: done 
+[ 371.2s] launch: start 
+[ 520.9s] launch: done 
+[ 520.9s] combine: start 
+[ 520.9s] combine: done 
+[ 520.9s] merge: start 
+[ 566.9s] merge: done 
+[ 566.9s] gate: start 
+[ 566.9s] gate: done 
+
+wall time 567s; GPU time on the box 388s of 480s budget
+node        speedup  gained  attempts  outcome
+seed          5.46x  True          1  green
+vectorize     6.73x  True          2  green
+tile          7.27x  True          2  green
+launch        7.42x  True          1  green
+combine       5.46x  False         0  skipped (fewer than 2 independent gains to combine)
+
+WINNER launch: 7.42x when produced, 7.33x re-measured -> runs_final/int8_matmul/graph/final.py
+
+GATE  SHIP   tier: one-click undo
+  - plain math in its own scope; revert is deleting the file
+  evidence rule: ships on green

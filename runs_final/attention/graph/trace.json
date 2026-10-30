@@ -1,0 +1,98 @@
+[
+ {
+  "t": 0.00017629098147153854,
+  "node": "seed",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 55.32917325000744,
+  "node": "seed",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 55.329849750036374,
+  "node": "fuse",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 55.330921291024424,
+  "node": "reduce",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 55.33319416595623,
+  "node": "tile",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 129.79470554098953,
+  "node": "fuse",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 146.2030945000006,
+  "node": "tile",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 161.98602508299518,
+  "node": "reduce",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 161.98637062497437,
+  "node": "launch",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 223.85376874997746,
+  "node": "launch",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 223.8544532499509,
+  "node": "combine",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 223.85478683304973,
+  "node": "combine",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 223.854861291009,
+  "node": "merge",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 233.0903477909742,
+  "node": "merge",
+  "kind": "done",
+  "detail": ""
+ },
+ {
+  "t": 233.0906856249785,
+  "node": "gate",
+  "kind": "start",
+  "detail": ""
+ },
+ {
+  "t": 233.10689791594632,
+  "node": "gate",
+  "kind": "done",
+  "detail": ""
+ }
+]

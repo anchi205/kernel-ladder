@@ -1,0 +1,16 @@
+[project]
+name = "kernelladder"
+version = "0.1.0"
+description = "Agent that writes and optimizes GPU kernels and proves every speedup"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.14,<3", "numpy>=2.0", "anthropic>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=9"]
+gpu = ["triton>=3.8; sys_platform == 'linux'"]
+
+[project.scripts]
+kernelladder = "kernelladder.cli:main"
+
+[tool.setuptools]
+packages = ["kernelladder", "kernelladder.ops"]
